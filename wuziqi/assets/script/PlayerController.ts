@@ -15,10 +15,18 @@ export class PlayerController extends Component {
 
 
     start() {
-        input.on(Input.EventType.KEY_DOWN, this.onKeyDown, this);
-        input.on(Input.EventType.KEY_UP, this.onKeyUp, this);
+
     }
 
+    setInputActive(active: boolean) {
+        if (active) {
+            input.on(Input.EventType.KEY_DOWN, this.onKeyDown, this);
+            input.on(Input.EventType.KEY_UP, this.onKeyUp, this);
+        } else {
+            input.off(Input.EventType.KEY_DOWN, this.onKeyDown, this);
+            input.off(Input.EventType.KEY_UP, this.onKeyUp, this);
+        }
+    }
     update(deltaTime: number) {
 
         if(this._leftRun){
